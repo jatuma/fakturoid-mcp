@@ -1,0 +1,32 @@
+[project]
+name = "fakturoid-mcp"
+version = "0.1.0"
+description = "MCP server for Fakturoid.cz accounting service"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.0",
+    "fakturoid @ git+https://github.com/jan-tomek/python-fakturoid.git",
+    "pydantic-settings>=2.0",
+]
+
+[project.scripts]
+fakturoid-mcp = "fakturoid_mcp.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fakturoid_mcp"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
